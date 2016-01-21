@@ -1,0 +1,46 @@
+{
+  "name": "topolysis",
+  "version": "1.0.0",
+  "description": "Topologically sort directed acyclic graph with fast tracking",
+  "homepage": "https://github.com/epiloque/topolysis",
+  "author": "Mark Milstein <mark@epiloque.com> (https://github.com/epiloque)",
+  "license": "MIT",
+  "keywords": [
+    "topological",
+    "sort",
+    "sorting",
+    "graphs",
+    "graph",
+    "dependency",
+    "list",
+    "dependencies",
+    "acyclic"
+  ],
+  "maintainers": [
+    "Mark Milstein <robots+npm@epiloque.com> (https://github.com/epiloque)"
+  ],
+  "contributors": [
+    "Mark Milstein <robots+npm@epiloque.com> (https://github.com/epiloque)"
+  ],
+  "bugs": {
+    "url": "https://github.com/epiloque/topolysis/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/epiloque/topolysis.git"
+  },
+  "main": "index.js",
+  "browsers": true,
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha test"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "array-unique": "^0.2.1",
+    "object-values": "^1.0.0",
+    "xtend": "^4.0.1"
+  }
+}
