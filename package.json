@@ -1,6 +1,6 @@
 {
   "name": "topolysis",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Topologically sort directed acyclic graph with fast tracking",
   "homepage": "https://github.com/epiloque/topolysis",
   "author": "Mark Milstein <mark@epiloque.com> (https://github.com/epiloque)",
