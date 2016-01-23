@@ -1,39 +1,38 @@
 'use strict'
 
-const values = require('object-values')
-const unique = require('array-unique')
-const extend = require('xtend')
+const _ = require('lodash')
 
 function extra (graph) {
-	const dependencies = unique(values(graph).reduce( function (p, c) {
-		return [].concat(p, c)
-	}))
-
-	dependencies.filter(function (i) {
-		return Object.keys(graph).indexOf(i) < 0
-	}).forEach(function (label) {
-		const extension = {}
-		extension[label] = []
-		graph = extend(graph, extension)
+	_(graph)
+	.values()
+	.uniq()
+	.flatten()
+	.value()
+	.forEach(function (label) {
+		if (!_.includes(_.keys(graph), label)) {
+			const extension = {}
+			extension[label] = []
+			graph = _.extend(graph, extension)
+		}
 	})
 
 	return graph
 }
 
-function cleanup (object) {
+function cleanup (data) {
 	const graph = {}
 
-	Object.keys(object).forEach(function (label) {
+	_(data).keys().forEach(function (label) {
 		graph[label] = []
 
-		object[label].map(function (dependency) {
+		_.map(data[label], function (dependency) {
 			if (dependency !== label) {
 				graph[label].push(dependency)
 			}
 			return dependency
 		})
 
-		graph[label] = unique(graph[label])
+		graph[label] = _.uniq(graph[label])
 	})
 
 	return extra(graph)
@@ -41,24 +40,24 @@ function cleanup (object) {
 
 function order (graph) {
 	const ordered = []
-	Object.keys(graph).forEach(function (label) {
+
+	_(graph).keys().forEach(function (label) {
 		const dependencies = graph[label]
 		if (dependencies.length === 0) {
 			ordered.push(label)
 		}
 	})
 
-	return unique(ordered)
+	return _.uniq(ordered)
 }
 
 function walk (graph, ordered) {
 	const result = {}
-	Object.keys(graph).forEach(function (label) {
-		if (ordered.indexOf(label) === -1) {
+
+	_(graph).keys().forEach(function (label) {
+		if (!_.includes(ordered, label)) {
 			const dependencies = graph[label]
-			result[label] = unique(dependencies.filter(function (i) {
-				return ordered.indexOf(i) === -1
-			}))
+			result[label] = _.uniq(_.difference(dependencies, ordered))
 		}
 	})
 
@@ -87,7 +86,7 @@ function *topolysis (data) {
 	}
 	while (true)
 
-	if (values(graph).length !== 0) {
+	if (_.values(graph).length !== 0) {
 		throw new CircularDependencyError('Two or more modules are mutually recursive', graph)
 	}
 }
