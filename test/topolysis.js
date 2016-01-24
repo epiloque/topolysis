@@ -29,13 +29,13 @@ describe('Topologically sort directed acyclic graph', function () {
 			['tie your shoes']
 		]
 
-		chai.expect(result).deep.equal(expectation)
+		return chai.expect(result).deep.equal(expectation)
 	})
 
 	it('error on circular dependencies', function () {
 		function circular () {
 			for (const x of topolysis(error)) {	}
 		}
-		chai.expect(circular).to.throw(topolysis.CircularDependencyError)
+		return chai.expect(circular).to.throw(topolysis.CircularDependencyError)
 	})
 })
