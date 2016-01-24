@@ -7,7 +7,6 @@ function extra (graph) {
 	.values()
 	.uniq()
 	.flatten()
-	.value()
 	.forEach(function (label) {
 		if (!_.includes(_.keys(graph), label)) {
 			const extension = {}
