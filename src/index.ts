@@ -1,6 +1,6 @@
 import {
+  assign,
   difference,
-  extend,
   flatten,
   forEach,
   includes,
@@ -15,19 +15,22 @@ export interface TopolysisInterface {
   [key: string]: string[]
 }
 
-function extra (graph: TopolysisInterface): TopolysisInterface {
-  forEach(flatten(uniq(values(graph))), (label: string) => {
-    if (!includes(keys(graph), label)) {
+const extra = (data: TopolysisInterface): TopolysisInterface => {
+  const graph = assign({}, data)
+
+  forEach(flatten(uniq(values(data))), (label: string) => {
+    if (!includes(keys(data), label)) {
       const extension = {}
       extension[label] = []
-      graph = extend(graph, extension)
+
+      assign(graph, extension)
     }
   })
 
   return graph
 }
 
-function cleanup (data: TopolysisInterface): TopolysisInterface {
+const cleanup = (data: TopolysisInterface): TopolysisInterface => {
   const graph: TopolysisInterface = {}
 
   forEach(keys(data), (label: string) => {
@@ -47,7 +50,7 @@ function cleanup (data: TopolysisInterface): TopolysisInterface {
   return extra(graph)
 }
 
-function order (graph: TopolysisInterface): string[] {
+const order = (graph: TopolysisInterface): string[] => {
   const ordered: string[] = []
 
   forEach(keys(graph), (label: string) => {
@@ -61,7 +64,7 @@ function order (graph: TopolysisInterface): string[] {
   return uniq(ordered)
 }
 
-function walk (graph: TopolysisInterface, ordered: string[]) {
+const walk = (graph: TopolysisInterface, ordered: string[]) => {
   const result = {}
 
   forEach(keys(graph), (label: string) => {
