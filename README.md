@@ -31,13 +31,13 @@ $ npm install --save topolysis
 const topolysis = require('topolysis')
 
 const data = {
-	'tie your shoes': ['put on your shoes'],
-	'put on your shoes': ['put on your shorts'],
-	'put on your jacket': ['put on your shirt', 'put on your shorts']
+    'tie your shoes': ['put on your shoes'],
+    'put on your shoes': ['put on your shorts'],
+    'put on your jacket': ['put on your shirt', 'put on your shorts']
 }
 
 for (const x of topolysis(data)) {
-	console.log(x)
+    console.log(x)
 }
 
 // [ 'put on your shirt', 'put on your shorts' ]

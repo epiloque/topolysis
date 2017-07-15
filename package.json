@@ -3,7 +3,7 @@
   "version": "1.1.1",
   "description": "Topologically sort directed acyclic graph with fast tracking",
   "homepage": "https://github.com/epiloque/topolysis",
-  "author": "Mark Milstein <mark@epiloque.com> (https://github.com/epiloque)",
+  "author": "Mark Milstein <mark@epiloque.com>",
   "license": "MIT",
   "keywords": [
     "topological",
@@ -16,12 +16,6 @@
     "dependencies",
     "acyclic"
   ],
-  "maintainers": [
-    "Mark Milstein <robots+npm@epiloque.com> (https://github.com/epiloque)"
-  ],
-  "contributors": [
-    "Mark Milstein <robots+npm@epiloque.com> (https://github.com/epiloque)"
-  ],
   "bugs": {
     "url": "https://github.com/epiloque/topolysis/issues"
   },
@@ -29,16 +23,35 @@
     "type": "git",
     "url": "http://github.com/epiloque/topolysis.git"
   },
-  "main": "index.js",
-  "browsers": true,
+  "types": "./types/index.d.ts",
+  "main": "lib/index.js",
+  "browsers": false,
+  "files": [
+    "lib",
+    "types"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha test"
+    "build": "rm -rf types lib && tsc",
+    "test": "node_modules/mocha/bin/mocha --compilers ts:ts-node/register src/**/*.spec.ts",
+    "watch": "node_modules/mocha/bin/mocha --compilers ts:ts-node/register watch src/**/*.spec.ts"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4"
+    "@types/chai": "^4.0.1",
+    "@types/lodash": "^4.14.68",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.13",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.4.1"
   },
   "dependencies": {
-    "lodash": "^4.0.0"
+    "lodash": "^4.17.4"
   }
 }
