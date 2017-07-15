@@ -1,3 +1,4 @@
 lib
 # Build Files
 node_modules/
+types/
