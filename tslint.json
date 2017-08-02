@@ -7,6 +7,11 @@
     ],
     "jsRules": {},
     "rules": {
+      "prefer-array-literal": false,
+      "array-type": false,
+      "prefer-method-signature": false,
+      "no-typeof-undefined": false,
+      "typeof-compare": true,
       "no-reserved-keywords": false,
       "no-suspicious-comment": false,
       "no-single-line-block-comment": false,

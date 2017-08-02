@@ -11,7 +11,6 @@ import {
 } from 'lodash'
 
 export interface TopolysisInterface {
-  test?: string[]
   [key: string]: string[]
 }
 
